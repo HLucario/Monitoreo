@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Monitoreo</string>
+    <string name="e_inicio_sesion">Iniciar Sesión</string>
+    <string name="e_correo_electronico">Correo electrónico:</string>
+    <string name="e_contra">Contraseña:</string>
+    <string name="e_olvido_contra">¿Ha olvidado su contraseña?</string>
+    <string name="e_nuevo">Eres nuevo, regístrate</string>
+    <string name="e_registrar">Registrarse</string>
+    <string name="e_nombre">Nombre:</string>
+    <string name="e_app">Apellido paterno:</string>
+    <string name="e_apm">Apelldio materno:</string>
+    <string name="e_recuperar">Recuperar Contraseña</string>
+    <string name="e_enviar">Enviar</string>
+    <string name="e_imagen">Imagen de la alerta</string>
+    <string name="b_descargar">Descargar</string>
+</resources>
