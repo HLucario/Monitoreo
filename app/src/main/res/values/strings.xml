@@ -13,4 +13,7 @@
     <string name="e_enviar">Enviar</string>
     <string name="e_imagen">Imagen de la alerta</string>
     <string name="b_descargar">Descargar</string>
+    <string name="e_agregar">Agregar hijo</string>
+    <string name="e_fecha">Fecha de nacimiento</string>
+    <string name="b_guardar">Guardar</string>
 </resources>

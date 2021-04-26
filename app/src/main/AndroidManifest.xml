@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Monitoreo">
-        <activity android:name=".DescargarImagen"></activity>
+        <activity android:name=".InformacionHijo"></activity>
+        <activity android:name=".AgregarHijo" />
+        <activity android:name=".ImagenAlerta" />
+        <activity android:name=".DescargarImagen" />
         <activity android:name=".RecuperarContra" />
         <activity android:name=".Registrar" />
         <activity android:name=".MainActivity">
