@@ -13,13 +13,17 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/e_inicio_sesion" />
+        android:fontFamily="@font/goblin_one"
+        android:text="@string/e_inicio_sesion"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/e_correo_electronico" />
+        android:fontFamily="@font/acme"
+        android:text="@string/e_correo_electronico"
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
@@ -32,7 +36,9 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/e_contra" />
+        android:fontFamily="@font/acme"
+        android:text="@string/e_contra"
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/editTextTextPassword"
@@ -45,17 +51,25 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/e_inicio_sesion" />
+        android:fontFamily="@font/acme"
+        android:text="@string/e_inicio_sesion"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/e_olvido_contra" />
+        android:fontFamily="@font/acme"
+        android:onClick="comeRecuperar"
+        android:text="@string/e_olvido_contra"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/e_nuevo" />
+        android:fontFamily="@font/acme"
+        android:onClick="comeRegistrar"
+        android:text="@string/e_nuevo"
+        android:textSize="24sp" />
 </LinearLayout>
