@@ -12,13 +12,17 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/e_recuperar" />
+        android:fontFamily="@font/goblin_one"
+        android:text="@string/e_recuperar"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/e_correo_electronico" />
+        android:fontFamily="@font/acme"
+        android:text="@string/e_correo_electronico"
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress3"
@@ -31,5 +35,7 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:fontFamily="@font/acme"
+        android:text="@string/e_enviar"
+        android:textSize="24sp" />
 </LinearLayout>
