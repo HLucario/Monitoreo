@@ -12,16 +12,20 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/e_agregar" />
+        android:fontFamily="@font/goblin_one"
+        android:text="@string/e_agregar"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/e_nombre" />
+        android:fontFamily="@font/acme"
+        android:text="@string/e_nombre"
+        android:textSize="24sp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/editNombreH"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -31,10 +35,27 @@
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/e_app" />
+        android:fontFamily="@font/acme"
+        android:text="@string/e_app"
+        android:textSize="24sp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/editApPatH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/acme"
+        android:text="@string/e_apm"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/editApMatH"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -44,18 +65,52 @@
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/e_fecha" />
+        android:fontFamily="@font/acme"
+        android:text="@string/e_edad"
+        android:textSize="24sp" />
 
     <EditText
-        android:id="@+id/editTextDate"
+        android:id="@+id/editEdadH"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="date" />
 
-    <Button
-        android:id="@+id/button5"
+    <TextView
+        android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/b_guardar" />
+        android:fontFamily="@font/acme"
+        android:text="@string/e_dispositivo"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/editDispo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/acme"
+        android:text="@string/e_tutor_e"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/editCorreoT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+
+    <Button
+        android:id="@+id/btnGuardarH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/acme"
+        android:text="@string/b_guardar"
+        android:textSize="24sp" />
 </LinearLayout>
