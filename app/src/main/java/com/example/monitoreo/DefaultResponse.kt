@@ -1,3 +1,5 @@
 package com.example.monitoreo
 
-data class DefaultResponse(val error:Boolean,val message:String)
+import com.google.gson.annotations.SerializedName
+
+data class DefaultResponse(@SerializedName("status")val status:String, @SerializedName("message")val message:String)

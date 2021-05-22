@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,7 +66,9 @@ class AgregarHijo : AppCompatActivity() {
             }
             val edad = edad_t.toInt()
             val hijo = Hijo(nombre,ap_paterno,ap_materno,edad,dispositivo,correo_t)
-            RetrofitClient.instance.registrarHijo(hijo)
+            val gson = Gson()
+            val hijo_j:String=gson.toJson(hijo)
+            /*RetrofitClient.instance.registrarHijo(hijo_j)
                 .enqueue(object: Callback<DefaultResponse> {
                     override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
                         Toast.makeText(applicationContext,t.message, Toast.LENGTH_LONG).show()
@@ -73,7 +76,7 @@ class AgregarHijo : AppCompatActivity() {
                     override fun onResponse(call: Call<DefaultResponse>, response: Response<DefaultResponse>) {
                         Toast.makeText(applicationContext,response.body()?.message, Toast.LENGTH_LONG).show()
                     }
-                })
+                }*/
         }
     }
 }

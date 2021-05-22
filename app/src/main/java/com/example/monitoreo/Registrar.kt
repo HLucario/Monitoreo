@@ -2,9 +2,11 @@ package com.example.monitoreo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,14 +67,17 @@ class Registrar : AppCompatActivity() {
             }
             val edad = edad_t.toInt()
             val tutor = Tutor(correo,nombre,ap_paterno,ap_materno,edad,password)
-            RetrofitClient.instance.registrarTutor(tutor)
+            val gson = Gson()
+            val tutor_j:String = gson.toJson(tutor)
+            RetrofitClient.instance.registrarTutor(tutor_j)
                 .enqueue(object: Callback<DefaultResponse>{
-                    override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-                        Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
-                    }
                     override fun onResponse(call: Call<DefaultResponse>, response: Response<DefaultResponse>) {
                         Toast.makeText(applicationContext,response.body()?.message,Toast.LENGTH_LONG).show()
                     }
+                    override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                        Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
+                    }
+
                 })
         }
     }
