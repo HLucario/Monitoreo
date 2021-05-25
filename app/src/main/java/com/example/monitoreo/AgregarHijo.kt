@@ -65,7 +65,7 @@ class AgregarHijo : AppCompatActivity() {
                 return@setOnClickListener
             }
             val edad = edad_t.toInt()
-            val hijo = Hijo(nombre,ap_paterno,ap_materno,edad,dispositivo,correo_t)
+            val hijo = Hijo(7,nombre,ap_paterno,ap_materno,edad,dispositivo,correo_t)
             val gson = Gson()
             val hijo_j:String=gson.toJson(hijo)
             /*RetrofitClient.instance.registrarHijo(hijo_j)

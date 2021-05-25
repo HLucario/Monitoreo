@@ -6,7 +6,11 @@ import retrofit2.http.*
 interface APIService
 {
     @POST("registrarTutor")
-    fun registrarTutor(tutor:String):Call<DefaultResponse>
+    fun registrarTutor(@Body tutor:Tutor):Call<DefaultResponse>
     @GET("Login")
-    fun Login(email: String,pass: String):Call<DefaultResponse>
+    fun Login(@Query("email")email: String,@Query("pass")pass: String):Call<LoginResponse>
+    @POST("recuperarPass")
+    fun recuperarPass(@Query("email")email: String,@Query("pass")pass: String):Call<DefaultResponse>
+    @GET("listarHijos")
+    fun listarHijos(@Query("email")email:String):Call<HijoResponse>
 }

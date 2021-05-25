@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
             val editContra = findViewById<EditText>(R.id.editPassI)
             val password = editContra.text.toString().trim()
             var tutor:Tutor
-            val gson= Gson()
             if(correo.isEmpty())
             {
                 editCorreo.error="El correo es requerido"
@@ -38,14 +37,15 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             RetrofitClient.instance.Login(correo,password)
-                .enqueue(object: Callback<DefaultResponse> {
-                    override fun onResponse(call: Call<DefaultResponse>, response: Response<DefaultResponse>) {
+                .enqueue(object: Callback<LoginResponse> {
+                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                         val defaultResponse=response.body()!!
-                        tutor=gson.fromJson(defaultResponse.message,Tutor::class.java)
-                        Log.d("prueba",tutor.nombre)
+                        tutor=Tutor(defaultResponse.email,defaultResponse.nombre,defaultResponse.ap_pat,defaultResponse.ap_Mat,defaultResponse.edad,defaultResponse.password)
+                        val intent = Intent(this@MainActivity, Menu::class.java)
+                        startActivity(intent)
                     }
-                    override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-                        Toast.makeText(applicationContext,t.message, Toast.LENGTH_LONG).show()
+                    override fun onFailure(call: Call<LoginResponse>,t: Throwable) {
+                        Toast.makeText(applicationContext,"Usuario o contraseña incorrecta",Toast.LENGTH_LONG).show()
                     }
 
                 })

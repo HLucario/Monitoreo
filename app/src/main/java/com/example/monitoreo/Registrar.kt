@@ -67,15 +67,21 @@ class Registrar : AppCompatActivity() {
             }
             val edad = edad_t.toInt()
             val tutor = Tutor(correo,nombre,ap_paterno,ap_materno,edad,password)
-            val gson = Gson()
-            val tutor_j:String = gson.toJson(tutor)
-            RetrofitClient.instance.registrarTutor(tutor_j)
+            /*val gson=Gson()
+            val tutor_j=gson.toJson(tutor)*/
+            RetrofitClient.instance.registrarTutor(tutor)
                 .enqueue(object: Callback<DefaultResponse>{
                     override fun onResponse(call: Call<DefaultResponse>, response: Response<DefaultResponse>) {
-                        Toast.makeText(applicationContext,response.body()?.message,Toast.LENGTH_LONG).show()
+                        /*val defaultResponse=response.body()!!
+                        val message=defaultResponse.entity
+                        Log.d("PRUEBA",message)*/
+                        Log.d("REALIZADO: ",response.message())
+                        //Toast.makeText(applicationContext,response.body()?.entity,Toast.LENGTH_LONG).show()
+
                     }
                     override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-                        Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
+                        Log.d("REALIZADO: ",t.localizedMessage)
+                        //Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
                     }
 
                 })
