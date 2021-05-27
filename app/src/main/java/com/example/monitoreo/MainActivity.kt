@@ -39,10 +39,19 @@ class MainActivity : AppCompatActivity() {
             RetrofitClient.instance.Login(correo,password)
                 .enqueue(object: Callback<LoginResponse> {
                     override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                        val defaultResponse=response.body()!!
-                        tutor=Tutor(defaultResponse.email,defaultResponse.nombre,defaultResponse.ap_pat,defaultResponse.ap_Mat,defaultResponse.edad,defaultResponse.password)
-                        val intent = Intent(this@MainActivity, Menu::class.java)
-                        startActivity(intent)
+                        if(response.code()==200)
+                        {
+                            val defaultResponse=response.body()!!
+                            tutor=Tutor(defaultResponse.email,defaultResponse.nombre,defaultResponse.ap_pat,defaultResponse.ap_Mat,defaultResponse.edad,defaultResponse.password)
+                            val intent = Intent(this@MainActivity, Menu::class.java)
+                            startActivity(intent)
+                        }
+                        else
+                        {
+                            val message=response.body().toString()
+                            Log.d("Prueba:",message)
+                        }
+
                     }
                     override fun onFailure(call: Call<LoginResponse>,t: Throwable) {
                         Toast.makeText(applicationContext,"Usuario o contraseña incorrecta",Toast.LENGTH_LONG).show()
