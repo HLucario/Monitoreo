@@ -21,12 +21,19 @@ class RecuperarContra : AppCompatActivity() {
         btnNC.setOnClickListener {
             val correo = txtCorreoR.text.toString()
             val pass = txtNC.text.toString()
-            RetrofitClient.instance.recuperarPass(correo,pass)
+            RetrofitClient.instance.recuperaPass(correo,pass)
                 .enqueue(object: Callback<ResponseBody> {
                     override fun onResponse(call: Call<ResponseBody>,response: Response<ResponseBody>) {
-                        Log.d("REALIZADO: ",response.body().toString())
-                        Log.d("REALIZADO: ",response.code().toString())
-                        Toast.makeText(applicationContext,response.body().toString(),Toast.LENGTH_LONG).show()
+                        if(response.code()==200)
+                        {
+                            Log.d("REALIZADO: ",response.body().toString())
+                            Log.d("REALIZADO: ",response.code().toString())
+                            Toast.makeText(applicationContext,response.body().toString(),Toast.LENGTH_LONG).show()
+                        }
+                        else
+                        {
+                            Log.d("REALIZADO: ",response.errorBody()!!.string())
+                        }
                     }
                     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                         Log.d("REALIZADO: ", "Falló")

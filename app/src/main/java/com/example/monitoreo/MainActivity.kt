@@ -48,12 +48,12 @@ class MainActivity : AppCompatActivity() {
                         }
                         else
                         {
+
                             val message=response.errorBody()!!.string()
-                            Log.d("Prueba:",message)
                         }
                     }
                     override fun onFailure(call: Call<LoginResponse>,t: Throwable) {
-                        Toast.makeText(applicationContext,"Usuario o contraseña incorrecta",Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
                     }
 
                 })
