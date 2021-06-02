@@ -9,7 +9,7 @@
     <string name="e_nombre">Nombre:</string>
     <string name="e_app">Apellido paterno:</string>
     <string name="e_apm">Apelldio materno:</string>
-    <string name="e_recuperar">Recuperar Contraseña</string>
+    <string name="e_recuperar">Recuperar contraseña</string>
     <string name="e_enviar">Enviar</string>
     <string name="e_imagen">Imagen de la alerta</string>
     <string name="b_descargar">Descargar</string>

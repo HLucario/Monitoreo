@@ -70,28 +70,14 @@ class Registrar : AppCompatActivity() {
             }
             val edad = edad_t.toInt()
             val tutor: TutorNetwork = Tutor(correo,nombre,ap_paterno,ap_materno,edad,password).asNetwork()
-            /*val gson=Gson()
-            val tutor_j=gson.toJson(tutor)*/
-            Log.d("REALIZADO", tutor.toString())
             RetrofitClient.instance.registrarTutor(tutor)
                 .enqueue(object: Callback<ResponseBody>{
                     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                        Log.d("REALIZADO: ", "Exitoso")
-                        /*val defaultResponse=response.body()!!
-                        val message=defaultResponse.entity
-                        Log.d("PRUEBA",message)*/
-                        Log.d("REALIZADO: ",response.body().toString())
-                        Log.d("REALIZADO: ",response.code().toString())
-                        //Toast.makeText(applicationContext,response.body()?.entity,Toast.LENGTH_LONG).show()
-
+                        Toast.makeText(applicationContext,response.body().toString(),Toast.LENGTH_LONG).show()
                     }
                     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                        Log.d("REALIZADO: ", "Falló")
-                        Log.d("REALIZADO: ",t.localizedMessage ?: "No hay mensaje")
-                        Log.d("REALIZADO: ",t.stackTraceToString())
-                        //Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
                     }
-
                 })
         }
     }

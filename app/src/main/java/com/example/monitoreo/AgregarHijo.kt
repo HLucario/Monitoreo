@@ -5,7 +5,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.monitoreo.api.HijoNetwork
+import com.example.monitoreo.api.TutorNetwork
+import com.example.monitoreo.api.asNetwork
 import com.google.gson.Gson
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,18 +69,16 @@ class AgregarHijo : AppCompatActivity() {
                 return@setOnClickListener
             }
             val edad = edad_t.toInt()
-            val hijo = Hijo(7,nombre,ap_paterno,ap_materno,edad,dispositivo,correo_t)
-            val gson = Gson()
-            val hijo_j:String=gson.toJson(hijo)
-            /*RetrofitClient.instance.registrarHijo(hijo_j)
-                .enqueue(object: Callback<DefaultResponse> {
-                    override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-                        Toast.makeText(applicationContext,t.message, Toast.LENGTH_LONG).show()
+            val hijo: HijoNetwork = Hijo(0,nombre,ap_paterno,ap_materno,edad,dispositivo,correo_t).asNetwork()
+            RetrofitClient.instance.registrarHijo(hijo)
+                .enqueue(object: Callback<ResponseBody> {
+                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                        Toast.makeText(applicationContext,response.body().toString(), Toast.LENGTH_LONG).show()
                     }
-                    override fun onResponse(call: Call<DefaultResponse>, response: Response<DefaultResponse>) {
-                        Toast.makeText(applicationContext,response.body()?.message, Toast.LENGTH_LONG).show()
+                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                        Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
                     }
-                }*/
+                })
         }
     }
 }

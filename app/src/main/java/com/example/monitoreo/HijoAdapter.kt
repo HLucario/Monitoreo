@@ -27,7 +27,7 @@ class HijoAdapter(var listHijo: List<Hijo>)
 
         private val e_hijo=view.findViewById<TextView>(R.id.e_hijo)
         fun bind(hijo: Hijo) {
-            e_hijo.text=hijo.nombre+" "+hijo.ap_paterno+" "+hijo.ap_materno
+            e_hijo.text=hijo.nombre+" "+hijo.ap_pat+" "+hijo.ap_Mat
         }
         companion object{
             fun create(parent: ViewGroup):HijoViewHolder{
