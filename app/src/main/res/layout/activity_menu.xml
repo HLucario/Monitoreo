@@ -30,12 +30,10 @@
             app:tabIndicatorColor="#ffffff"
             app_tabTextColor="#ffffff"
             />
-
-        <androidx.viewpager.widget.ViewPager
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:id="@+id/viewPager"/>
-
     </com.google.android.material.appbar.AppBarLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/viewPager"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
