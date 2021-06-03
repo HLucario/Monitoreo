@@ -9,14 +9,9 @@ import com.example.monitoreo.fragments.GestionarHijos
 class MyPagerAdapter (fm:FragmentManager):FragmentPagerAdapter(fm){
     override fun getItem(position: Int): Fragment {
         return when(position){
-            0->
-            {
-                GestionarHijos()
-            }
+            0-> GestionarHijos()
             else->
-            {
                 return Configuracion()
-            }
         }
     }
     override fun getCount():Int{
@@ -24,10 +19,9 @@ class MyPagerAdapter (fm:FragmentManager):FragmentPagerAdapter(fm){
     }
     override fun getPageTitle(position: Int):CharSequence?{
         return when (position){
-            0->"Gestionar Hijos"
+            0->"Gestionar Hijios"
             else->
                 return "Configuración"
         }
     }
-
 }

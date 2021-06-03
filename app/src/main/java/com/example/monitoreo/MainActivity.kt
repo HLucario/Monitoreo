@@ -41,19 +41,24 @@ class MainActivity : AppCompatActivity() {
                     override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                         if(response.code()==200)
                         {
+
                             val defaultResponse=response.body()!!
-                            tutor=Tutor(defaultResponse.email,defaultResponse.nombre,defaultResponse.ap_pat,defaultResponse.ap_Mat,defaultResponse.edad,defaultResponse.password)
                             val intent = Intent(this@MainActivity, Menu::class.java)
+                            intent.putExtra("email",defaultResponse.email)
+                            intent.putExtra("nombre",defaultResponse.nombre)
+                            intent.putExtra("ap_pat",defaultResponse.ap_pat)
+                            intent.putExtra("ap_Mat",defaultResponse.ap_Mat)
+                            intent.putExtra("edad",defaultResponse.edad)
+                            intent.putExtra("email",defaultResponse.password)
                             startActivity(intent)
                         }
                         else
                         {
                             val message=response.errorBody()!!.string()
-                            Log.d("Prueba:",message)
                         }
                     }
                     override fun onFailure(call: Call<LoginResponse>,t: Throwable) {
-                        Toast.makeText(applicationContext,"Usuario o contraseña incorrecta",Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
                     }
 
                 })

@@ -13,8 +13,10 @@ class Menu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
         val toolBar = findViewById<Toolbar>(R.id.toolBar)
+
         toolBar.setTitle("TUTOR")
         setSupportActionBar(toolBar)
+        
         val fragmentAdapter=MyPagerAdapter(supportFragmentManager)
         val viewPager=findViewById<ViewPager>(R.id.viewPager)
         viewPager.adapter=fragmentAdapter

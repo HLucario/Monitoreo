@@ -30,6 +30,7 @@
             app:tabIndicatorColor="#ffffff"
             app_tabTextColor="#ffffff"
             />
+
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"

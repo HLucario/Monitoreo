@@ -32,9 +32,6 @@ class GestionarHijos : Fragment() {
     {
         super.onViewCreated(view,savedInstanceState)
         val recycler = binding.hijos
-        val hijo1=Hijo(1,"Hector","Hernandez","Martínez",10,"00000ABB28FC","luis.shdw.gen@gmail.com")
-        val hijo2=Hijo(2,"David","Hernandez","Martínez",15,"00000ABB28FD","luis.shdw.gen@gmail.com")
-        val hijos= listOf<Hijo>(hijo1,hijo2)
         lifecycleScope.launch {
             RetrofitClient.instance.listarHijos("luis.shdw.gen@gmail.com")
                 .enqueue(object: Callback<HijoResponse> {

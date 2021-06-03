@@ -12,8 +12,8 @@ interface APIService
     fun registrarTutor(@Body tutor:TutorNetwork):Call<ResponseBody>
     @POST("Login")
     fun Login(@Query("email")email: String,@Query("pass")pass: String):Call<LoginResponse>
-    @POST("recuperarPass")
-    fun recuperarPass(@Query("email")email: String,@Query("pass")new_pass: String):Call<ResponseBody>
+    @POST("recuperaPass")
+    fun recuperaPass(@Query("email")email: String,@Query("new_pass")new_pass: String):Call<ResponseBody>
     @GET("listarHijos")
     fun listarHijos(@Query("email")email:String):Call<HijoResponse>
     @POST("registrarHijo")
