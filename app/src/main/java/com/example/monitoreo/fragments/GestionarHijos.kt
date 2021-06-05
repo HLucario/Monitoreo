@@ -7,6 +7,7 @@ import android.view.*
 import android.view.Menu
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.fragment.app.ListFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.monitoreo.databinding.FragmentGestionarHijosBinding
 import androidx.lifecycle.lifecycleScope
@@ -20,6 +21,7 @@ class GestionarHijos : Fragment() {
     private var _binding: FragmentGestionarHijosBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: HijoAdapter
+
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?
@@ -33,6 +35,7 @@ class GestionarHijos : Fragment() {
         super.onViewCreated(view,savedInstanceState)
         val recycler = binding.hijos
         lifecycleScope.launch {
+
             RetrofitClient.instance.listarHijos("luis.shdw.gen@gmail.com")
                 .enqueue(object: Callback<HijoResponse> {
                     override fun onResponse(call: Call<HijoResponse>, response: Response<HijoResponse>) {
@@ -45,8 +48,8 @@ class GestionarHijos : Fragment() {
                         //hijos= emptyList()
                     }
                 })
-            adapter = HijoAdapter(hijos)
-            recycler.adapter = adapter
+            /*adapter = HijoAdapter(hijos)
+            recycler.adapter = adapter*/
         }
     }
     override fun onDestroyView() {

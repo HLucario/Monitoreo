@@ -1,15 +1,23 @@
 package com.example.monitoreo
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.monitoreo.fragments.Configuracion
 import com.example.monitoreo.fragments.GestionarHijos
 
-class MyPagerAdapter (fm:FragmentManager):FragmentPagerAdapter(fm){
+class MyPagerAdapter (fm:FragmentManager, bundle:Bundle):FragmentPagerAdapter(fm){
+
     override fun getItem(position: Int): Fragment {
-        return when(position){
-            0-> GestionarHijos()
+        when(position){
+            0->
+            {
+                GestionarHijos().arguments = Bundle().apply {
+                    putString("email",bundle.)
+                }
+                return GestionarHijos()
+            }
             else->
                 return Configuracion()
         }
