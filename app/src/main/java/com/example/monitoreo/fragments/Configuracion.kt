@@ -1,60 +1,60 @@
 package com.example.monitoreo.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.monitoreo.R
+import androidx.lifecycle.lifecycleScope
+import com.example.monitoreo.*
+import com.example.monitoreo.databinding.FragmentConfiguracionBinding
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Configuracion.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Configuracion : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+    private var _binding: FragmentConfiguracionBinding? = null
+    private val binding get() = _binding!!
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_configuracion, container, false)
+        _binding = FragmentConfiguracionBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Configuracion.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Configuracion().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view:View,savedInstanceState: Bundle?)
+    {
+        super.onViewCreated(view,savedInstanceState)
+        var email=""
+        arguments?.takeIf { it.containsKey("email") }?.apply {
+            email=getString("email").toString()
+        }
+        var nombre=""
+        arguments?.takeIf { it.containsKey("nombre") }?.apply {
+            nombre=getString("nombre").toString()
+        }
+        var ap_pat=""
+        arguments?.takeIf { it.containsKey("ap_pat") }?.apply {
+            ap_pat=getString("ap_pat").toString()
+        }
+        var ap_Mat=""
+        arguments?.takeIf { it.containsKey("ap_Mat") }?.apply {
+            ap_Mat=getString("ap_Mat").toString()
+        }
+        var edad=0
+        arguments?.takeIf { it.containsKey("edad") }?.apply {
+            edad=getInt("edad")
+        }
+        binding.txtCfN.text=nombre+" "+ap_pat+" "+ap_Mat
+        binding.txtCfC.text=email
+        binding.txtCfE.text=edad.toString()
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

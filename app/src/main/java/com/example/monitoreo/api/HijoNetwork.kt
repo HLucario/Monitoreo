@@ -11,7 +11,7 @@ data class HijoNetwork(
     val nombre: String,
     @SerializedName("ap_pat")
     val apellidoPaterno: String,
-    @SerializedName("ap_mat")
+    @SerializedName("ap_Mat")
     val apellidoMaterno: String,
     @SerializedName("edad")
     val edad: Int,

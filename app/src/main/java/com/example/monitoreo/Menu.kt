@@ -1,13 +1,16 @@
 package com.example.monitoreo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 
-class Menu : AppCompatActivity() {
+class Menu : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?)
     {

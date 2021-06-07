@@ -2,6 +2,7 @@ package com.example.monitoreo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -28,10 +29,6 @@ class AgregarHijo : AppCompatActivity() {
             val ap_materno = editApMatH.text.toString()
             val editEdadH = findViewById<EditText>(R.id.editEdadH)
             val edad_t = editEdadH.text.toString()
-            val editDispositivo = findViewById<EditText>(R.id.editDispo)
-            val dispositivo = editDispositivo.text.toString()
-            val editCorreoT = findViewById<EditText>(R.id.editCorreoT)
-            val correo_t = editCorreoT.text.toString()
             if(nombre.isEmpty())
             {
                 editNombreH.error="El nombre es requerido"
@@ -50,18 +47,6 @@ class AgregarHijo : AppCompatActivity() {
                 editApMatH.requestFocus()
                 return@setOnClickListener
             }
-            if(correo_t.isEmpty())
-            {
-                editCorreoT.error="El correo es requerido"
-                editCorreoT.requestFocus()
-                return@setOnClickListener
-            }
-            if(dispositivo.isEmpty())
-            {
-                editDispositivo.error="La contraseña es requerida"
-                editDispositivo.requestFocus()
-                return@setOnClickListener
-            }
             if(edad_t.isEmpty())
             {
                 editEdadH.error="La edad es requerida"
@@ -69,11 +54,20 @@ class AgregarHijo : AppCompatActivity() {
                 return@setOnClickListener
             }
             val edad = edad_t.toInt()
-            val hijo: HijoNetwork = Hijo(0,nombre,ap_paterno,ap_materno,edad,dispositivo,correo_t).asNetwork()
+            val correo_t=intent.getStringExtra("email").toString()
+            val hijo: HijoNetwork = Hijo(0,nombre,ap_paterno,ap_materno,edad,"",correo_t).asNetwork()
             RetrofitClient.instance.registrarHijo(hijo)
                 .enqueue(object: Callback<ResponseBody> {
                     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                        Toast.makeText(applicationContext,response.body().toString(), Toast.LENGTH_LONG).show()
+                        if(response.code()==200)
+                        {
+                            Log.d("ENTRO","SE REGISTRÓ")
+                            Toast.makeText(applicationContext,response.message(), Toast.LENGTH_LONG).show()
+                        }
+                        else
+                        {
+                            Toast.makeText(applicationContext,response.errorBody()!!.string(), Toast.LENGTH_LONG).show()
+                        }
                     }
                     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                         Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()

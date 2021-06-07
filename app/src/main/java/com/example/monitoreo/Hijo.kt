@@ -1,3 +1,11 @@
 package com.example.monitoreo
 
-data class Hijo(val id:Int,val nombre:String, val ap_pat:String,val ap_Mat:String, val edad:Int,val dispositivo:String, val tutor_email:String)
+data class Hijo(
+    var id:Int,
+    var nombre:String,
+    var ap_pat:String,
+    var ap_Mat:String,
+    var edad:Int,
+    var dispositivo:String,
+    var tutor_email:String)
+

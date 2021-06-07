@@ -15,7 +15,7 @@ interface APIService
     @POST("recuperaPass")
     fun recuperaPass(@Query("email")email: String,@Query("new_pass")new_pass: String):Call<ResponseBody>
     @GET("listarHijos")
-    fun listarHijos(@Query("email")email:String):Call<HijoResponse>
+    fun listarHijos(@Query("email")email:String):Call <List<HijoResponse>>
     @POST("registrarHijo")
     fun registrarHijo(@Body hijo: HijoNetwork):Call<ResponseBody>
 }

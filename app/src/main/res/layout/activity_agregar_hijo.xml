@@ -76,36 +76,6 @@
         android:ems="10"
         android:inputType="date" />
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/acme"
-        android:text="@string/e_dispositivo"
-        android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/editDispo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/acme"
-        android:text="@string/e_tutor_e"
-        android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/editCorreoT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress" />
-
     <Button
         android:id="@+id/btnGuardarH"
         android:layout_width="wrap_content"

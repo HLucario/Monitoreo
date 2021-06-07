@@ -1,25 +1,38 @@
 package com.example.monitoreo
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.monitoreo.fragments.Configuracion
 import com.example.monitoreo.fragments.GestionarHijos
 
-class MyPagerAdapter (fm:FragmentManager, bundle:Bundle):FragmentPagerAdapter(fm){
+class MyPagerAdapter(fm:FragmentManager,var bundle:Bundle):FragmentPagerAdapter(fm){
 
     override fun getItem(position: Int): Fragment {
         when(position){
             0->
             {
-                GestionarHijos().arguments = Bundle().apply {
-                    putString("email",bundle.)
+                val fragment= GestionarHijos()
+                fragment.arguments=Bundle().apply{
+                    putString("email",bundle.getString("email"))
                 }
-                return GestionarHijos()
+                return fragment
             }
             else->
-                return Configuracion()
+            {
+                val fragment=Configuracion()
+                fragment.arguments=Bundle().apply{
+                    putString("email",bundle.getString("email"))
+                    putString("nombre",bundle.getString("nombre"))
+                    putString("ap_pat",bundle.getString("ap_pat"))
+                    putString("ap_Mat",bundle.getString("ap_Mat"))
+                    putInt("edad",bundle.getInt("edad"))
+                }
+                return fragment
+            }
+
         }
     }
     override fun getCount():Int{
@@ -32,4 +45,5 @@ class MyPagerAdapter (fm:FragmentManager, bundle:Bundle):FragmentPagerAdapter(fm
                 return "Configuración"
         }
     }
+
 }

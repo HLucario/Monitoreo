@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity() {
                             bundle.putString("ap_pat",defaultResponse.ap_pat)
                             bundle.putString("ap_Mat",defaultResponse.ap_Mat)
                             bundle.putInt("edad",defaultResponse.edad)
-                            bundle.putString("email",defaultResponse.password)
                             //tutor=Tutor(defaultResponse.email,defaultResponse.nombre,defaultResponse.ap_pat,defaultResponse.ap_Mat,defaultResponse.edad,defaultResponse.password)
                             val intent = Intent(this@MainActivity, Menu::class.java)
                             intent.putExtras(bundle)
