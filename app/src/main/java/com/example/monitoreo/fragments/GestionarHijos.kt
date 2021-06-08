@@ -60,14 +60,8 @@ class GestionarHijos : Fragment() {
                     hijosR= emptyList()
                 }
             })
-
-            /*adapter = HijoResponseAdapter(hijosR)
-            recycler.adapter = adapter*/
-
         }
-
         binding.btnAgregar.setOnClickListener{
-            Log.d("EMAIL 1:",email)
             val intent = Intent(context, AgregarHijo::class.java)
             intent.putExtra("email",email)
             startActivity(intent)

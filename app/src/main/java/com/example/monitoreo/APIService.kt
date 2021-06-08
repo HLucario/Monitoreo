@@ -18,4 +18,6 @@ interface APIService
     fun listarHijos(@Query("email")email:String):Call <List<HijoResponse>>
     @POST("registrarHijo")
     fun registrarHijo(@Body hijo: HijoNetwork):Call<ResponseBody>
+    @GET("tablaAlertasLast")
+    fun tablaAlertasLast(@Query("email")email:String,@Query("hijo_id")hijo_id:Int):Call <List<AlertaResponse>>
 }

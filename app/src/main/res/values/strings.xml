@@ -33,4 +33,8 @@
     <string name="e_nombre_h">Hector Hernandez Martínez</string>
     <string name="e_seleccion">Seleccione hijo a monitorear en este dispositivo</string>
     <string name="seleccionar">SELECCIONAR</string>
+    <string name="e_informacion">INFORMACIÓN</string>
+    <string name="e_historial">Historial de alertas</string>
+    <string name="b_modificar">MODIFICAR</string>
+    <string name="b_eliminar">ELIMINAR</string>
 </resources>

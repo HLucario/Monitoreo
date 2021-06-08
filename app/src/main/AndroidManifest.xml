@@ -12,12 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Monitoreo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ModificarDatos"></activity>
+        <activity android:name=".HijoInformacion"></activity>
+        <activity android:name=".ModificarDatos" />
         <activity
             android:name=".Menu"
             android:label="Activity Title"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".InformacionHijo" />
         <activity android:name=".AgregarHijo" />
         <activity android:name=".DescargarImagen" />
         <activity android:name=".RecuperarContra" />
