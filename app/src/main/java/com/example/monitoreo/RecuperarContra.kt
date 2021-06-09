@@ -26,20 +26,15 @@ class RecuperarContra : AppCompatActivity() {
                     override fun onResponse(call: Call<ResponseBody>,response: Response<ResponseBody>) {
                         if(response.code()==200)
                         {
-                            Log.d("REALIZADO: ",response.body().toString())
-                            Log.d("REALIZADO: ",response.code().toString())
                             Toast.makeText(applicationContext,response.body().toString(),Toast.LENGTH_LONG).show()
                         }
                         else
                         {
-                            Log.d("REALIZADO: ",response.errorBody()!!.string())
+                            Toast.makeText(applicationContext,response.errorBody()!!.string(),Toast.LENGTH_LONG).show()
                         }
                     }
                     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                        Log.d("REALIZADO: ", "Falló")
-                        Log.d("REALIZADO: ",t.localizedMessage ?: "No hay mensaje")
-                        Log.d("REALIZADO: ",t.stackTraceToString())
-                        //Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
                     }
 
                 })

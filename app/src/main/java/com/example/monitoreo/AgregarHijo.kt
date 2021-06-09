@@ -15,7 +15,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AgregarHijo : AppCompatActivity() {
+class AgregarHijo : AppCompatActivity()
+{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agregar_hijo)
@@ -61,7 +62,6 @@ class AgregarHijo : AppCompatActivity() {
                     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                         if(response.code()==200)
                         {
-                            Log.d("ENTRO","SE REGISTRÓ")
                             Toast.makeText(applicationContext,response.message(), Toast.LENGTH_LONG).show()
                         }
                         else

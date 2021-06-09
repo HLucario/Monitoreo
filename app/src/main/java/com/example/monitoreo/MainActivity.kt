@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                     override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                         if(response.code()==200)
                         {
+                            Toast.makeText(applicationContext,response.message(), Toast.LENGTH_LONG).show()
                             val defaultResponse=response.body()!!
                             val bundle=Bundle()
                             bundle.putString("email",defaultResponse.email)
@@ -51,14 +52,14 @@ class MainActivity : AppCompatActivity() {
                             bundle.putString("ap_pat",defaultResponse.ap_pat)
                             bundle.putString("ap_Mat",defaultResponse.ap_Mat)
                             bundle.putInt("edad",defaultResponse.edad)
-                            //tutor=Tutor(defaultResponse.email,defaultResponse.nombre,defaultResponse.ap_pat,defaultResponse.ap_Mat,defaultResponse.edad,defaultResponse.password)
+                            bundle.putString("password",defaultResponse.password)
                             val intent = Intent(this@MainActivity, Menu::class.java)
                             intent.putExtras(bundle)
                             startActivity(intent)
                         }
                         else
                         {
-                            val message=response.errorBody()!!.string()
+                            Toast.makeText(applicationContext,response.errorBody()!!.string(),Toast.LENGTH_LONG).show()
                         }
                     }
                     override fun onFailure(call: Call<LoginResponse>,t: Throwable) {

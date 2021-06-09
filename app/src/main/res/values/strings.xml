@@ -37,4 +37,6 @@
     <string name="e_historial">Historial de alertas</string>
     <string name="b_modificar">MODIFICAR</string>
     <string name="b_eliminar">ELIMINAR</string>
+    <string name="e_modificar">Modificar Información</string>
+    <string name="e_nueva_contra">Nueva contraseña</string>
 </resources>

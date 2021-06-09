@@ -49,9 +49,27 @@ class Configuracion : Fragment() {
         arguments?.takeIf { it.containsKey("edad") }?.apply {
             edad=getInt("edad")
         }
+        var password=""
+        arguments?.takeIf { it.containsKey("password") }?.apply {
+            password=getString("password").toString()
+        }
         binding.txtCfN.text=nombre+" "+ap_pat+" "+ap_Mat
         binding.txtCfC.text=email
         binding.txtCfE.text=edad.toString()
+        binding.btnConf.setOnClickListener {
+            putData(email,nombre,ap_pat,ap_Mat,edad,password)
+        }
+    }
+    fun putData(email:String,nombre:String,ap_pat:String,ap_Mat:String,edad:Int,password:String)
+    {
+        val intent = Intent(context,ModificarDatos::class.java)
+        intent.putExtra("email",email)
+        intent.putExtra("nombre",nombre)
+        intent.putExtra("ap_pat",ap_pat)
+        intent.putExtra("ap_Mat",ap_Mat)
+        intent.putExtra("edad",edad)
+        intent.putExtra("password",password)
+        startActivity(intent)
     }
     override fun onDestroyView() {
         super.onDestroyView()

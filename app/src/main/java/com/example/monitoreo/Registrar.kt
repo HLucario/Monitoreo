@@ -72,8 +72,16 @@ class Registrar : AppCompatActivity() {
             val tutor: TutorNetwork = Tutor(correo,nombre,ap_paterno,ap_materno,edad,password).asNetwork()
             RetrofitClient.instance.registrarTutor(tutor)
                 .enqueue(object: Callback<ResponseBody>{
-                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                        Toast.makeText(applicationContext,response.body().toString(),Toast.LENGTH_LONG).show()
+                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
+                    {
+                        if(response.code()==200)
+                        {
+                            Toast.makeText(applicationContext,response.body().toString(),Toast.LENGTH_LONG).show()
+                        }
+                        else
+                        {
+                            Toast.makeText(applicationContext,response.errorBody()!!.string(),Toast.LENGTH_LONG).show()
+                        }
                     }
                     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                         Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()

@@ -25,7 +25,7 @@ class HijoInformacion : AppCompatActivity() {
         val dispositivo=intent.getStringExtra("dispositivo")
         val tutor_email=intent.getStringExtra("tutor_email")
         val txtNI=findViewById<TextView>(R.id.editNI)
-        txtNI.text=nombre+" "+ap_pat+ap_Mat
+        txtNI.text=nombre+" "+ap_pat+" "+ap_Mat
         val txtEI=findViewById<TextView>(R.id.editEI)
         txtEI.text=edad.toString()
         var alertasR= emptyList<AlertaResponse>()
