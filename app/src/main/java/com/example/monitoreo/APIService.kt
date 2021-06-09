@@ -20,4 +20,8 @@ interface APIService
     fun registrarHijo(@Body hijo: HijoNetwork):Call<ResponseBody>
     @GET("tablaAlertasLast")
     fun tablaAlertasLast(@Query("email")email:String,@Query("hijo_id")hijo_id:Int):Call <List<AlertaResponse>>
+    @POST("actualizaTutor")
+    fun actualizaTutor(@Body tutor:TutorNetwork):Call<ResponseBody>
+    @POST("actualizaPass")
+    fun actualizaPass(@Query("email")email: String,@Query("old_pass")old_pass:String,@Query("new_pass")new_pass: String):Call<ResponseBody>
 }

@@ -76,7 +76,7 @@ class Registrar : AppCompatActivity() {
                     {
                         if(response.code()==200)
                         {
-                            Toast.makeText(applicationContext,response.body().toString(),Toast.LENGTH_LONG).show()
+                            Toast.makeText(applicationContext,response.message(),Toast.LENGTH_LONG).show()
                         }
                         else
                         {

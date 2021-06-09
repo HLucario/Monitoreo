@@ -2,8 +2,16 @@ package com.example.monitoreo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import com.example.monitoreo.api.TutorNetwork
+import com.example.monitoreo.api.asNetwork
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ModificarDatos : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,37 +22,49 @@ class ModificarDatos : AppCompatActivity() {
         val txtMAP=findViewById<TextView>(R.id.txtMAP)
         val txtMAM=findViewById<TextView>(R.id.txtMAM)
         val txtME=findViewById<TextView>(R.id.txtME)
-        val txtMCE=findViewById<TextView>(R.id.txtMCE)
         val txtCA=findViewById<TextView>(R.id.txtCA)
         val txtMNC=findViewById<TextView>(R.id.txtMNC)
-        var correo=intent.getStringExtra("email").toString()
-        var nombre=intent.getStringExtra("nombre").toString()
-        var ap_pat=intent.getStringExtra("ap_pat").toString()
-        var ap_Mat=intent.getStringExtra("ap_Mat").toString()
-        var edad=intent.getIntExtra("edad",0)
-        var password=intent.getStringExtra("password").toString()
-        putData(txtMN,txtMAP,txtMAM,txtME,txtMCE,nombre,ap_pat,ap_Mat,correo,edad)
+        val correo=intent.getStringExtra("email").toString()
+        val nombre=intent.getStringExtra("nombre").toString()
+        val ap_pat=intent.getStringExtra("ap_pat").toString()
+        val ap_Mat=intent.getStringExtra("ap_Mat").toString()
+        val password=intent.getStringExtra("password").toString()
+        val edad=intent.getIntExtra("edad",0)
+        var nombre2=""
+        var ap_pat2=""
+        var ap_Mat2=""
+        var edad_t=""
+        var edad2=0
+        var password2=""
+        var passwordC=""
+        putData(txtMN,txtMAP,txtMAM,txtME,nombre,ap_pat,ap_Mat,correo,edad)
         btnGMT.setOnClickListener {
-            val result=validateData(txtMN,txtMAP,txtMAM,txtME,txtMCE,txtCA,nombre,ap_pat,ap_Mat,correo,edad,password)
+            val result=validateData(txtMN,txtMAP,txtMAM,txtME,txtCA)
             if(result)
             {
                 return@setOnClickListener
             }
             else
             {
-
+                nombre2=txtMN.text.toString()
+                ap_pat2=txtMAP.text.toString()
+                ap_Mat2=txtMAM.text.toString()
+                edad_t=txtME.text.toString()
+                edad2=edad_t.toInt()
+                password2=txtMNC.text.toString()
+                passwordC=txtCA.text.toString()
+                changeData(nombre,ap_pat,ap_Mat,correo,edad,password,nombre2,ap_pat2,ap_Mat2,edad2,password2)
             }
         }
     }
-    fun putData(txtMN:TextView,txtMAP:TextView,txtMAM:TextView,txtME:TextView,txtMCE:TextView,nombre:String,ap_pat:String,ap_Mat:String,correo:String,edad:Int)
+    fun putData(txtMN:TextView,txtMAP:TextView,txtMAM:TextView,txtME:TextView,nombre:String,ap_pat:String,ap_Mat:String,correo:String,edad:Int)
     {
         txtMN.text=nombre
         txtMAP.text=ap_pat
         txtMAM.text=ap_Mat
-        txtMCE.text=correo
         txtME.text=edad.toString()
     }
-    fun validateData(txtMN:TextView,txtMAP:TextView,txtMAM:TextView,txtME:TextView,txtMCE:TextView,txtCA:TextView,nombre:String,ap_pat:String,ap_Mat:String,correo:String,edad:Int,password:String):Boolean
+    fun validateData(txtMN:TextView,txtMAP:TextView,txtMAM:TextView,txtME:TextView,txtCA:TextView):Boolean
     {
         if(txtMN.text.isEmpty())
         {
@@ -64,12 +84,6 @@ class ModificarDatos : AppCompatActivity() {
             txtMAM.requestFocus()
             return true
         }
-        if(txtMCE.text.isEmpty())
-        {
-            txtMCE.error="Este campo es requerido"
-            txtMCE.requestFocus()
-            return true
-        }
         if(txtME.text.isEmpty())
         {
             txtME.error="Este campo es requerido"
@@ -84,21 +98,86 @@ class ModificarDatos : AppCompatActivity() {
         }
         return false
     }
-    fun changeData(txtMN:TextView,txtMAP:TextView,txtMAM:TextView,txtME:TextView,txtMCE:TextView,txtCA:TextView,txtMNC:TextView,nombre:String,ap_pat:String,ap_Mat:String,correo:String,edad:Int,password:String)
+    fun changeData(nombre:String,ap_pat:String,ap_Mat:String,correo: String,edad:Int,password:String,nombre2:String,ap_pat2:String,ap_Mat2:String,edad2:Int,password2:String)
     {
-        var changes=0
-        if(!txtCA.text.isEmpty())
+        var changeC=0
+        var changeD=0
+        if(password2.isNotEmpty())
         {
-            if(!txtCA.text.equals(password))
+            if(password2 != password)
             {
-                password=txtCA.text.toString()
+                changeC=1
             }
-            changes++
         }
-        if(txtMN.equals(nombre) && txtMAP)
+        if(nombre!=nombre2 || ap_pat!=ap_pat2 || ap_Mat!=ap_Mat2 || edad!=edad2)
         {
-            changes++
+            changeD=1
         }
+        if(changeC==1 || changeD==1)
+        {
+            lateinit var tutor:TutorNetwork
+            if(changeC==1 && changeD==1)
+            {
+                tutor= Tutor(correo,nombre2,ap_pat2,ap_Mat2,edad2,password).asNetwork()
+                updateData(tutor)
+                updatePassword(correo,password,password2)
+            }
+            else if(changeC==1 && changeD==0)
+            {
+                updatePassword(correo,password,password2)
+            }
+            else
+            {
+                tutor= Tutor(correo,nombre2,ap_pat2,ap_Mat2,edad2,password).asNetwork()
+                updateData(tutor)
+            }
 
+        }
+        else
+        {
+            Toast.makeText(applicationContext,"NO HAY MODIFICACIONES", Toast.LENGTH_LONG).show()
+        }
+    }
+    fun updateData(tutor:TutorNetwork)
+    {
+        RetrofitClient.instance.actualizaTutor(tutor)
+            .enqueue(object: Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
+                {
+                    if(response.code()==200)
+                    {
+                        Toast.makeText(applicationContext,response.message(), Toast.LENGTH_LONG).show()
+                    }
+                    else
+                    {
+                        Toast.makeText(applicationContext,response.errorBody()!!.string(), Toast.LENGTH_LONG).show()
+                    }
+                }
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+
+                    Toast.makeText(applicationContext,t.message, Toast.LENGTH_LONG).show()
+                }
+            })
+    }
+    fun updatePassword(email:String,old_pass:String,new_pass:String)
+    {
+        RetrofitClient.instance.actualizaPass(email,old_pass,new_pass)
+            .enqueue(object: Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
+                {
+                    if(response.code()==200)
+                    {
+                        Toast.makeText(applicationContext,response.message(), Toast.LENGTH_LONG).show()
+                    }
+                    else
+                    {
+                        Toast.makeText(applicationContext,response.errorBody()!!.string(), Toast.LENGTH_LONG).show()
+                    }
+                }
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+
+                    Toast.makeText(applicationContext,t.message, Toast.LENGTH_LONG).show()
+                }
+            })
     }
 }

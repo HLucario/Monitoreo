@@ -66,6 +66,7 @@ class GestionarHijos : Fragment() {
             intent.putExtra("email",email)
             startActivity(intent)
         }
+
     }
     override fun onDestroyView() {
         super.onDestroyView()

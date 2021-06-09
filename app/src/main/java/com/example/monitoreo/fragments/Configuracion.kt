@@ -59,6 +59,12 @@ class Configuracion : Fragment() {
         binding.btnConf.setOnClickListener {
             putData(email,nombre,ap_pat,ap_Mat,edad,password)
         }
+        binding.btnCerrarS.setOnClickListener {
+            val intent=Intent(Intent.ACTION_MAIN)
+            intent.addCategory(Intent.CATEGORY_HOME)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        }
     }
     fun putData(email:String,nombre:String,ap_pat:String,ap_Mat:String,edad:Int,password:String)
     {

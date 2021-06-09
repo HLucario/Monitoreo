@@ -7,7 +7,8 @@
     android:layout_gravity="center|center_horizontal"
     android:gravity="center|center_horizontal|center_vertical"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/textView"
@@ -15,7 +16,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/goblin_one"
         android:text="@string/e_inicio_sesion"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textView2"
@@ -23,14 +25,16 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/acme"
         android:text="@string/e_correo_electronico"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editCorreoI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -38,14 +42,16 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/acme"
         android:text="@string/e_contra"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editPassI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/btnIniciarSesion"
@@ -53,7 +59,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/acme"
         android:text="@string/e_inicio_sesion"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textView5"
@@ -62,7 +69,8 @@
         android:fontFamily="@font/acme"
         android:onClick="comeRecuperar"
         android:text="@string/e_olvido_contra"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textView6"
@@ -71,5 +79,6 @@
         android:fontFamily="@font/acme"
         android:onClick="comeRegistrar"
         android:text="@string/e_nuevo"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 </LinearLayout>
