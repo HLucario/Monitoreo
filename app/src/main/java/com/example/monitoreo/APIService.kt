@@ -24,4 +24,6 @@ interface APIService
     fun actualizaTutor(@Body tutor:TutorNetwork):Call<ResponseBody>
     @POST("actualizaPass")
     fun actualizaPass(@Query("email")email: String,@Query("old_pass")old_pass:String,@Query("new_pass")new_pass: String):Call<ResponseBody>
+    @POST("eliminaHijo")
+    fun eliminaHijo(@Body hijo: HijoNetwork):Call<ResponseBody>
 }

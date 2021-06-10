@@ -24,7 +24,6 @@ class AlertaResponseAdapter(var listAlerta: List<AlertaResponse>)
 
         holder.bind(currentAlerta)
     }
-
     class AlertaResponseViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private lateinit var context: Context
         private val alertas=view.findViewById<TextView>(R.id.alertas)
@@ -33,6 +32,12 @@ class AlertaResponseAdapter(var listAlerta: List<AlertaResponse>)
             alertas.setOnClickListener {
                 context = itemView.context
                 val intent = Intent(context,AgregarHijo::class.java)
+                intent.putExtra("tutor_email",alerta.tutor_email)
+                intent.putExtra("id_hijo",alerta.id_hijo)
+                intent.putExtra("id_alerta",alerta.id_alerta)
+                intent.putExtra("fecha",alerta.fecha)
+                intent.putExtra("texto",alerta.texto)
+                intent.putExtra("img",alerta.img)
                 context.startActivity(intent)
             }
         }

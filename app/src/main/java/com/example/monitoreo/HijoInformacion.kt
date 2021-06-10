@@ -2,11 +2,15 @@ package com.example.monitoreo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import com.example.monitoreo.api.HijoNetwork
+import com.example.monitoreo.api.asNetwork
 import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +28,7 @@ class HijoInformacion : AppCompatActivity() {
         val edad=intent.getIntExtra("edad",0)
         val dispositivo=intent.getStringExtra("dispositivo")
         val tutor_email=intent.getStringExtra("tutor_email")
+        val hijo: HijoNetwork = Hijo(id,nombre.toString(),ap_pat.toString(),ap_Mat.toString(),edad,dispositivo.toString(),tutor_email.toString()).asNetwork()
         val txtNI=findViewById<TextView>(R.id.editNI)
         txtNI.text=nombre+" "+ap_pat+" "+ap_Mat
         val txtEI=findViewById<TextView>(R.id.editEI)
@@ -46,6 +51,26 @@ class HijoInformacion : AppCompatActivity() {
                         }
                     }
                     override fun onFailure(call: Call<List<AlertaResponse>>, t: Throwable) {
+                        Toast.makeText(applicationContext,t.message, Toast.LENGTH_LONG).show()
+                        alertasR= emptyList()
+                    }
+                })
+        }
+        val btnE=findViewById<Button>(R.id.btnE)
+        btnE.setOnClickListener {
+            RetrofitClient.instance.eliminaHijo(hijo)
+                .enqueue(object: Callback<ResponseBody> {
+                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                        if(response.code()==200)
+                        {
+                            Toast.makeText(applicationContext,response.message(), Toast.LENGTH_LONG).show()
+                        }
+                        else
+                        {
+                            Toast.makeText(applicationContext,response.errorBody()!!.string(), Toast.LENGTH_LONG).show()
+                        }
+                    }
+                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                         Toast.makeText(applicationContext,t.message, Toast.LENGTH_LONG).show()
                         alertasR= emptyList()
                     }
