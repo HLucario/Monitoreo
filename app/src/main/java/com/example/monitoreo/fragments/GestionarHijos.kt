@@ -62,8 +62,8 @@ class GestionarHijos : Fragment() {
             })
         }
         binding.btnAgregar.setOnClickListener{
-            val intent = Intent(context, AgregarHijo::class.java)
-            intent.putExtra("email",email)
+            val intent = Intent(context, ImagenAlerta::class.java)
+            //intent.putExtra("email",email)
             startActivity(intent)
         }
 

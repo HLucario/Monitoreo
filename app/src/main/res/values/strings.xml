@@ -39,4 +39,6 @@
     <string name="b_eliminar">ELIMINAR</string>
     <string name="e_modificar">Modificar Información</string>
     <string name="e_nueva_contra">Nueva contraseña</string>
+    <string name="e_imagen_a">Imagen de la alerta</string>
+    <string name="b_descargar_i">Descargar</string>
 </resources>
