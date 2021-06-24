@@ -2,10 +2,13 @@ package com.example.monitoreo
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.util.rangeTo
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -21,23 +24,21 @@ class AlertaResponseAdapter(var listAlerta: List<AlertaResponse>)
 
     override fun onBindViewHolder(holder: AlertaResponseViewHolder, position: Int) {
         val currentAlerta = listAlerta[position]
-
         holder.bind(currentAlerta)
     }
     class AlertaResponseViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private lateinit var context: Context
-        private val alertas=view.findViewById<TextView>(R.id.alertas)
+        private val alertas=view.findViewById<TextView>(R.id.e_hijo)
         fun bind(alerta: AlertaResponse) {
-            alertas.text=alerta.id_alerta.toString()+" "+alerta.fecha+" "+alerta.texto
+            alertas.text=alerta.id_alerta.toString()+" "+alerta.fecha
             alertas.setOnClickListener {
                 context = itemView.context
-                val intent = Intent(context,AgregarHijo::class.java)
+                val intent = Intent(context,ImagenAlerta::class.java)
                 intent.putExtra("tutor_email",alerta.tutor_email)
                 intent.putExtra("id_hijo",alerta.id_hijo)
                 intent.putExtra("id_alerta",alerta.id_alerta)
                 intent.putExtra("fecha",alerta.fecha)
                 intent.putExtra("texto",alerta.texto)
-                intent.putExtra("img",alerta.img)
                 context.startActivity(intent)
             }
         }

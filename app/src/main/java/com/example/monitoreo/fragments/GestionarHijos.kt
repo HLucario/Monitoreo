@@ -39,7 +39,6 @@ class GestionarHijos : Fragment() {
         }
         super.onViewCreated(view,savedInstanceState)
         val recycler = binding.hijos
-        var i=0
         lifecycleScope.launch{
         RetrofitClient.instance.listarHijos(email)
             .enqueue(object: Callback<List<HijoResponse>> {
@@ -49,6 +48,7 @@ class GestionarHijos : Fragment() {
                         hijosR=response.body()!!
                         adapter = HijoResponseAdapter(hijosR)
                         recycler.adapter = adapter
+
                     }
                     else
                     {
@@ -62,7 +62,7 @@ class GestionarHijos : Fragment() {
             })
         }
         binding.btnAgregar.setOnClickListener{
-            val intent = Intent(context, ImagenAlerta::class.java)
+            val intent = Intent(context, AgregarHijo::class.java)
             //intent.putExtra("email",email)
             startActivity(intent)
         }

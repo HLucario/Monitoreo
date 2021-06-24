@@ -2,6 +2,7 @@ package com.example.monitoreo
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -41,6 +42,7 @@ class HijoResponseAdapter(var listHijo: List<HijoResponse>)
                 intent.putExtra("edad",hijo.edad)
                 intent.putExtra("dispositivo",hijo.dispositivo)
                 intent.putExtra("tutor_email",hijo.tutor_email)
+
                 context.startActivity(intent)
             }
         }
