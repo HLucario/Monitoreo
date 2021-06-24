@@ -13,10 +13,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class AlertaResponseAdapter(var listAlerta: List<AlertaResponse>)
-    : ListAdapter<AlertaResponse, AlertaResponseAdapter.AlertaResponseViewHolder>(AlertasResponseComparator()){
+class AlertaResponseAdapter(var listAlerta: List<AlertaResponse>) :
+    ListAdapter<AlertaResponse, AlertaResponseAdapter.AlertaResponseViewHolder>(
+        AlertasResponseComparator()
+    ) {
 
-    override fun getItemCount():Int=listAlerta.size
+    override fun getItemCount(): Int = listAlerta.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlertaResponseViewHolder {
         return AlertaResponseViewHolder.create(parent)
@@ -26,32 +28,35 @@ class AlertaResponseAdapter(var listAlerta: List<AlertaResponse>)
         val currentAlerta = listAlerta[position]
         holder.bind(currentAlerta)
     }
-    class AlertaResponseViewHolder(view: View): RecyclerView.ViewHolder(view) {
+
+    class AlertaResponseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private lateinit var context: Context
-        private val alertas=view.findViewById<TextView>(R.id.e_hijo)
+        private val alertas = view.findViewById<TextView>(R.id.e_hijo)
         fun bind(alerta: AlertaResponse) {
-            alertas.text=alerta.id_alerta.toString()+" "+alerta.fecha
+            alertas.text = alerta.id_alerta.toString() + " " + alerta.fecha
             alertas.setOnClickListener {
                 context = itemView.context
-                val intent = Intent(context,ImagenAlerta::class.java)
-                intent.putExtra("tutor_email",alerta.tutor_email)
-                intent.putExtra("id_hijo",alerta.id_hijo)
-                intent.putExtra("id_alerta",alerta.id_alerta)
-                intent.putExtra("fecha",alerta.fecha)
-                intent.putExtra("texto",alerta.texto)
+                val intent = Intent(context, ImagenAlerta::class.java)
+                intent.putExtra("tutor_email", alerta.tutor_email)
+                intent.putExtra("id_hijo", alerta.id_hijo)
+                intent.putExtra("id_alerta", alerta.id_alerta)
+                intent.putExtra("fecha", alerta.fecha)
+                intent.putExtra("texto", alerta.texto)
                 context.startActivity(intent)
             }
         }
-        companion object{
-            fun create(parent: ViewGroup):AlertaResponseViewHolder{
+
+        companion object {
+            fun create(parent: ViewGroup): AlertaResponseViewHolder {
                 val view = LayoutInflater
                     .from(parent.context)
-                    .inflate(R.layout.view_hijo,parent,false)
+                    .inflate(R.layout.view_hijo, parent, false)
                 return AlertaResponseViewHolder(view)
             }
         }
     }
-    class AlertasResponseComparator : DiffUtil.ItemCallback<AlertaResponse>(){
+
+    class AlertasResponseComparator : DiffUtil.ItemCallback<AlertaResponse>() {
         override fun areItemsTheSame(oldItem: AlertaResponse, newItem: AlertaResponse): Boolean {
             return oldItem === newItem
         }
