@@ -34,7 +34,6 @@ class ImagenAlerta : AppCompatActivity()
         setContentView(R.layout.activity_imagen_alerta)
         val tutor_email=intent.getStringExtra("tutor_email")
         val id=intent.getIntExtra("id_hijo",0)
-
         val image_alerta=findViewById<ImageView>(R.id.image_alert)
         lifecycleScope.launch{
             obtenerAlertas(tutor_email.toString(),id,image_alerta)
