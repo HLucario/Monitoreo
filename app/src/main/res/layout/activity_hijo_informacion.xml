@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:gravity="center|center_horizontal|center_vertical"
     android:orientation="vertical"
-    tools:context=".HijoInformacion">
+    tools:context=".HijoInformacion"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/textView21"
@@ -14,7 +15,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/goblin_one"
         android:text="@string/e_informacion"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textView23"
@@ -22,14 +24,16 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/acme"
         android:text="@string/e_nombre"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editNI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textView24"
@@ -37,14 +41,16 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/acme"
         android:text="@string/e_edad"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editEI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textView25"
@@ -52,7 +58,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/goblin_one"
         android:text="@string/e_historial"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/alertas"
@@ -65,7 +72,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnMH"
-        tools:listitem="@layout/view_hijo" />
+        tools:listitem="@layout/view_hijo"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/btnMH"

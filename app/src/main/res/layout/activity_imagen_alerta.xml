@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:gravity="center|center_horizontal|center_vertical"
     android:orientation="vertical"
-    tools:context=".ImagenAlerta">
+    tools:context=".ImagenAlerta"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/textView30"
@@ -14,7 +15,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/goblin_one"
         android:text="@string/e_imagen_a"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <ImageView
         android:id="@+id/image_alert"

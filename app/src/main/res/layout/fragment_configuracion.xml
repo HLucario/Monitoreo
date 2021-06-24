@@ -6,7 +6,8 @@
     android:layout_gravity="center"
     android:gravity="center|center_horizontal|center_vertical"
     android:orientation="vertical"
-    tools:context=".fragments.Configuracion">
+    tools:context=".fragments.Configuracion"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/textView31"
@@ -15,7 +16,8 @@
         android:layout_gravity="center"
         android:fontFamily="@font/goblin_one"
         android:text="@string/e_cuenta"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textView32"
@@ -24,12 +26,14 @@
         android:layout_gravity="center|center_horizontal|center_vertical"
         android:fontFamily="@font/acme"
         android:text="@string/e_nombre"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/txtCfN"
         android:layout_width="291dp"
-        android:layout_height="49dp" />
+        android:layout_height="49dp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textView34"
@@ -37,12 +41,14 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/acme"
         android:text="@string/e_correo_electronico"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/txtCfC"
         android:layout_width="292dp"
-        android:layout_height="52dp" />
+        android:layout_height="52dp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textView36"
@@ -50,12 +56,14 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/acme"
         android:text="@string/e_edad"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/txtCfE"
         android:layout_width="138dp"
-        android:layout_height="43dp" />
+        android:layout_height="43dp"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/btnConf"

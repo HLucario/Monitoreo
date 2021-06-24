@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:gravity="center|center_horizontal|center_vertical"
     android:orientation="vertical"
-    tools:context=".AgregarHijo">
+    tools:context=".AgregarHijo"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/textView14"
@@ -14,7 +15,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/goblin_one"
         android:text="@string/e_agregar"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textView15"
@@ -22,14 +24,16 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/acme"
         android:text="@string/e_nombre"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editNombreH"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textView17"
@@ -37,14 +41,16 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/acme"
         android:text="@string/e_app"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editApPatH"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textView22"
@@ -52,14 +58,16 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/acme"
         android:text="@string/e_apm"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editApMatH"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textView18"
@@ -67,14 +75,16 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/acme"
         android:text="@string/e_edad"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editEdadH"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="date" />
+        android:inputType="date"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/btnGuardarH"
