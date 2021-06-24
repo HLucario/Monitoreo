@@ -21,7 +21,6 @@
             android:label="Activity Title"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AgregarHijo" />
-        <activity android:name=".DescargarImagen" />
         <activity android:name=".RecuperarContra" />
         <activity android:name=".Registrar" />
         <activity android:name=".MainActivity">
