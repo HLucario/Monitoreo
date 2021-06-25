@@ -10,8 +10,10 @@
         android:id="@+id/e_hijo"
         android:layout_width="match_parent"
         android:layout_height="57dp"
+        android:fontFamily="@font/acme"
         android:text="@string/e_nombre_h"
         android:textAlignment="center"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
 </LinearLayout>

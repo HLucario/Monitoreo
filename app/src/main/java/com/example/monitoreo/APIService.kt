@@ -43,4 +43,7 @@ interface APIService {
 
     @POST("eliminaHijo")
     fun eliminaHijo(@Body hijo: HijoNetwork): Call<ResponseBody>
+
+    @POST("actualizaHijo")
+    fun actualizaHijo(@Body hijo: HijoNetwork): Call<ResponseBody>
 }

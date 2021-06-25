@@ -29,20 +29,20 @@ class HijoInformacion : AppCompatActivity() {
         alertasR = emptyList()
         setContentView(R.layout.activity_hijo_informacion)
         val id = intent.getIntExtra("id", 0)
-        val nombre = intent.getStringExtra("nombre")
-        val ap_pat = intent.getStringExtra("ap_pat")
-        val ap_Mat = intent.getStringExtra("ap_Mat")
+        val nombre = intent.getStringExtra("nombre").toString()
+        val ap_pat = intent.getStringExtra("ap_pat").toString()
+        val ap_Mat = intent.getStringExtra("ap_Mat").toString()
         val edad = intent.getIntExtra("edad", 0)
-        val dispositivo = intent.getStringExtra("dispositivo")
-        val tutor_email = intent.getStringExtra("tutor_email")
+        val dispositivo = intent.getStringExtra("dispositivo").toString()
+        val tutor_email = intent.getStringExtra("tutor_email").toString()
         val hijo: HijoNetwork = Hijo(
             id,
-            nombre.toString(),
-            ap_pat.toString(),
-            ap_Mat.toString(),
+            nombre,
+            ap_pat,
+            ap_Mat,
             edad,
-            dispositivo.toString(),
-            tutor_email.toString()
+            dispositivo,
+            tutor_email
         ).asNetwork()
         val txtNI = findViewById<TextView>(R.id.editNI)
         txtNI.text = nombre + " " + ap_pat + " " + ap_Mat
@@ -53,6 +53,7 @@ class HijoInformacion : AppCompatActivity() {
             obtenerAlertas(tutor_email.toString(), id, recycler)
         }
         val btnE = findViewById<Button>(R.id.btnE)
+        val btnMH = findViewById<Button>(R.id.btnMH)
         btnE.setOnClickListener {
             RetrofitClient.instance.eliminaHijo(hijo)
                 .enqueue(object : Callback<ResponseBody> {
@@ -80,8 +81,29 @@ class HijoInformacion : AppCompatActivity() {
                     }
                 })
         }
+        btnMH.setOnClickListener {
+            putData(id,nombre,ap_pat,ap_Mat,edad,dispositivo,tutor_email)
+        }
     }
-
+    fun putData(
+        id: Int,
+        nombre: String,
+        ap_pat: String,
+        ap_Mat: String,
+        edad: Int,
+        dispositivo: String,
+        tutor_email: String,
+    ) {
+        val intent = Intent(this@HijoInformacion, ModificarHijo::class.java)
+        intent.putExtra("id", id)
+        intent.putExtra("nombre", nombre)
+        intent.putExtra("ap_pat", ap_pat)
+        intent.putExtra("ap_Mat", ap_Mat)
+        intent.putExtra("edad", edad)
+        intent.putExtra("dispositivo", dispositivo)
+        intent.putExtra("tutor_email",tutor_email)
+        startActivity(intent)
+    }
     suspend fun obtenerAlertas(tutor_email: String, id: Int, recycler: RecyclerView) =
         withContext(Dispatchers.Main) {
             RetrofitClient.instance.tablaAlertasLast(tutor_email, id)
@@ -101,6 +123,7 @@ class HijoInformacion : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<List<AlertaResponse>>, t: Throwable) {
+                        Log.d("ERROR:",t.message.toString())
                         Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
                         alertasR = emptyList()
                     }

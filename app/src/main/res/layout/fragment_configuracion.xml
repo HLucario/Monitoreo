@@ -33,7 +33,9 @@
         android:id="@+id/txtCfN"
         android:layout_width="291dp"
         android:layout_height="49dp"
-        android:textColor="@color/black"/>
+        android:fontFamily="@font/acme"
+        android:textColor="@color/black"
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/textView34"
@@ -48,7 +50,9 @@
         android:id="@+id/txtCfC"
         android:layout_width="292dp"
         android:layout_height="52dp"
-        android:textColor="@color/black"/>
+        android:fontFamily="@font/acme"
+        android:textColor="@color/black"
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/textView36"
@@ -63,7 +67,9 @@
         android:id="@+id/txtCfE"
         android:layout_width="138dp"
         android:layout_height="43dp"
-        android:textColor="@color/black"/>
+        android:fontFamily="@font/acme"
+        android:textColor="@color/black"
+        android:textAlignment="center"/>
 
     <Button
         android:id="@+id/btnConf"

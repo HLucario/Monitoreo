@@ -32,25 +32,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/acme"
         android:inputType="textEmailAddress"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/textView38"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/acme"
-        android:text="@string/e_recuperar"
-        android:textSize="24sp"
-        android:textColor="@color/black"/>
+        android:text="@string/e_nueva_c"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/editNuevaC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/acme"
         android:inputType="textPassword"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/btnNC"
