@@ -7,7 +7,7 @@ data class AlertaResponse(
     @SerializedName("tutor_email") val tutor_email: String,
     @SerializedName("id_hijo") val id_hijo: Int,
     @SerializedName("id_alerta") val id_alerta: Int,
-    @SerializedName("fecha") val fecha: String,
+    @SerializedName("fecha") val fecha: Date,
     @SerializedName("texto") val texto: String,
     @SerializedName("img") val img: String
 )
