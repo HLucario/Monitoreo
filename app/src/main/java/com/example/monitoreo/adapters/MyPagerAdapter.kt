@@ -1,18 +1,20 @@
-package com.example.monitoreo
+package com.example.monitoreo.adapters
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.monitoreo.fragments.Configuracion
 import com.example.monitoreo.fragments.GestionarHijos
 
-class MyPagerAdapter(fm: FragmentManager, var bundle: Bundle) : FragmentPagerAdapter(fm) {
-
-    override fun getItem(position: Int): Fragment {
-        when (position) {
-            0 -> {
+class MyPagerAdapter(fm: FragmentManager, var bundle: Bundle) : FragmentPagerAdapter(fm)
+{
+    override fun getItem(position: Int): Fragment
+    {
+        when (position)
+        {
+            0 ->
+            {
                 val fragment = GestionarHijos()
                 fragment.arguments = Bundle().apply {
                     putString("email", bundle.getString("email"))
@@ -34,12 +36,15 @@ class MyPagerAdapter(fm: FragmentManager, var bundle: Bundle) : FragmentPagerAda
         }
     }
 
-    override fun getCount(): Int {
+    override fun getCount(): Int
+    {
         return 2
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
-        return when (position) {
+    override fun getPageTitle(position: Int): CharSequence?
+    {
+        return when (position)
+        {
             0 -> "Gestionar Hijios"
             else ->
                 return "Configuración"

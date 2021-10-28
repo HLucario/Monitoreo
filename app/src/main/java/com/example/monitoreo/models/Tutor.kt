@@ -1,4 +1,4 @@
-package com.example.monitoreo
+package com.example.monitoreo.models
 
 class Tutor(
     var email: String,

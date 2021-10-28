@@ -1,12 +1,16 @@
-package com.example.monitoreo
+package com.example.monitoreo.api
 
 import com.example.monitoreo.api.HijoNetwork
 import com.example.monitoreo.api.TutorNetwork
+import com.example.monitoreo.models.AlertaResponse
+import com.example.monitoreo.models.HijoResponse
+import com.example.monitoreo.models.LoginResponse
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
-interface APIService {
+interface APIService
+{
     @POST("registrarTutor")
     fun registrarTutor(@Body tutor: TutorNetwork): Call<ResponseBody>
 

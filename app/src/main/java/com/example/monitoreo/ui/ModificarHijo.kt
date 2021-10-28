@@ -1,20 +1,24 @@
-package com.example.monitoreo
+package com.example.monitoreo.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-
 import android.widget.TextView
 import android.widget.Toast
+import com.example.monitoreo.R
 import com.example.monitoreo.api.HijoNetwork
+import com.example.monitoreo.api.RetrofitClient
 import com.example.monitoreo.api.asNetwork
+import com.example.monitoreo.models.Hijo
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ModificarHijo : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+class ModificarHijo : AppCompatActivity()
+{
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modificar_hijo)
         val btnMDH = findViewById<Button>(R.id.btnMDH)
@@ -122,41 +126,46 @@ class ModificarHijo : AppCompatActivity() {
         edad2: Int,
     ) {
         var changeD = 0
-        if (nombre != nombre2 || ap_pat != ap_pat2 || ap_Mat != ap_Mat2 || edad != edad2) {
+        if (nombre != nombre2 || ap_pat != ap_pat2 || ap_Mat != ap_Mat2 || edad != edad2)
+        {
             changeD = 1
         }
-        if (changeD == 1) {
+        if (changeD == 1)
+        {
             var hijo: HijoNetwork =
                 Hijo(id, nombre2, ap_pat2, ap_Mat2, edad2, dispositivo, tutor_email).asNetwork()
             updateData(hijo)
-        } else {
+        }
+        else
+        {
             Toast.makeText(applicationContext, "NO HAY MODIFICACIONES", Toast.LENGTH_LONG).show()
         }
     }
 
-    fun updateData(hijo: HijoNetwork) {
-        RetrofitClient.instance.actualizaHijo(hijo)
-            .enqueue(object : Callback<ResponseBody> {
-                override fun onResponse(
-                    call: Call<ResponseBody>,
-                    response: Response<ResponseBody>
-                ) {
-                    if (response.code() == 200) {
-                        Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG)
-                            .show()
-                    } else {
-                        Toast.makeText(
-                            applicationContext,
-                            response.errorBody()!!.string(),
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+    fun updateData(hijo: HijoNetwork)
+    {
+        RetrofitClient.instance.actualizaHijo(hijo).enqueue(object : Callback<ResponseBody>
+        {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
+            {
+                if (response.code() == 200)
+                {
+                    Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
                 }
-
-                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-
-                    Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                else
+                {
+                    Toast.makeText(
+                        applicationContext,
+                        response.errorBody()!!.string(),
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
-            })
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable)
+            {
+                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }

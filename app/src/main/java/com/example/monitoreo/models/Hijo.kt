@@ -1,4 +1,4 @@
-package com.example.monitoreo
+package com.example.monitoreo.models
 
 data class Hijo(
     var id: Int,

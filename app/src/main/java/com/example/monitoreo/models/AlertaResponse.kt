@@ -1,7 +1,6 @@
-package com.example.monitoreo
+package com.example.monitoreo.models
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
 
 data class AlertaResponse(
     @SerializedName("tutor_email") val tutor_email: String,

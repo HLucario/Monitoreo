@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center|center_horizontal|center_vertical"
     android:orientation="vertical"
-    tools:context=".HijoInformacion"
+    tools:context=".ui.HijoInformacion"
     android:background="@color/white">
 
     <TextView

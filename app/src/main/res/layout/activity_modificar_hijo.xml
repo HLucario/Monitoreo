@@ -7,7 +7,7 @@
     android:layout_gravity="center|clip_vertical|center_horizontal|center_vertical"
     android:gravity="center|center_horizontal|center_vertical"
     android:orientation="vertical"
-    tools:context=".ModificarHijo"
+    tools:context=".ui.ModificarHijo"
     android:background="@color/white">
 
     <TextView

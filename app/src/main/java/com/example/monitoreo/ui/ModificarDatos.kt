@@ -1,20 +1,24 @@
-package com.example.monitoreo
+package com.example.monitoreo.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.example.monitoreo.R
+import com.example.monitoreo.api.RetrofitClient
 import com.example.monitoreo.api.TutorNetwork
 import com.example.monitoreo.api.asNetwork
+import com.example.monitoreo.models.Tutor
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ModificarDatos : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+class ModificarDatos : AppCompatActivity()
+{
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modificar_datos)
         val btnGMT = findViewById<Button>(R.id.bntGMT)
@@ -40,9 +44,12 @@ class ModificarDatos : AppCompatActivity() {
         putData(txtMN, txtMAP, txtMAM, txtME, nombre, ap_pat, ap_Mat, correo, edad)
         btnGMT.setOnClickListener {
             val result = validateData(txtMN, txtMAP, txtMAM, txtME, txtCA)
-            if (result) {
+            if (result)
+            {
                 return@setOnClickListener
-            } else {
+            }
+            else
+            {
                 nombre2 = txtMN.text.toString()
                 ap_pat2 = txtMAP.text.toString()
                 ap_Mat2 = txtMAM.text.toString()
@@ -134,81 +141,94 @@ class ModificarDatos : AppCompatActivity() {
     ) {
         var changeC = 0
         var changeD = 0
-        if (password2.isNotEmpty()) {
-            if (password2 != password) {
+        if (password2.isNotEmpty())
+        {
+            if (password2 != password)
+            {
                 changeC = 1
             }
         }
-        if (nombre != nombre2 || ap_pat != ap_pat2 || ap_Mat != ap_Mat2 || edad != edad2) {
+        if (nombre != nombre2 || ap_pat != ap_pat2 || ap_Mat != ap_Mat2 || edad != edad2)
+        {
             changeD = 1
         }
-        if (changeC == 1 || changeD == 1) {
+        if (changeC == 1 || changeD == 1)
+        {
             lateinit var tutor: TutorNetwork
-            if (changeC == 1 && changeD == 1) {
+            if (changeC == 1 && changeD == 1)
+            {
                 tutor = Tutor(correo, nombre2, ap_pat2, ap_Mat2, edad2, password).asNetwork()
                 updateData(tutor)
                 updatePassword(correo, password, password2)
-            } else if (changeC == 1 && changeD == 0) {
+            }
+            else if (changeC == 1 && changeD == 0)
+            {
                 updatePassword(correo, password, password2)
-            } else {
+            }
+            else
+            {
                 tutor = Tutor(correo, nombre2, ap_pat2, ap_Mat2, edad2, password).asNetwork()
                 updateData(tutor)
             }
 
-        } else {
+        }
+        else
+        {
             Toast.makeText(applicationContext, "NO HAY MODIFICACIONES", Toast.LENGTH_LONG).show()
         }
     }
 
-    fun updateData(tutor: TutorNetwork) {
-        RetrofitClient.instance.actualizaTutor(tutor)
-            .enqueue(object : Callback<ResponseBody> {
-                override fun onResponse(
-                    call: Call<ResponseBody>,
-                    response: Response<ResponseBody>
-                ) {
-                    if (response.code() == 200) {
-                        Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG)
-                            .show()
-                    } else {
-                        Toast.makeText(
-                            applicationContext,
-                            response.errorBody()!!.string(),
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+    fun updateData(tutor: TutorNetwork)
+    {
+        RetrofitClient.instance.actualizaTutor(tutor).enqueue(object : Callback<ResponseBody>
+        {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
+            {
+                if (response.code() == 200)
+                {
+                    Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
                 }
-
-                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-
-                    Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                else
+                {
+                    Toast.makeText(
+                        applicationContext,
+                        response.errorBody()!!.string(),
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
-            })
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable)
+            {
+                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
-    fun updatePassword(email: String, old_pass: String, new_pass: String) {
-        RetrofitClient.instance.actualizaPass(email, old_pass, new_pass)
-            .enqueue(object : Callback<ResponseBody> {
-                override fun onResponse(
-                    call: Call<ResponseBody>,
-                    response: Response<ResponseBody>
-                ) {
-                    if (response.code() == 200) {
-                        Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG)
-                            .show()
-                    } else {
-                        Toast.makeText(
-                            applicationContext,
-                            response.errorBody()!!.string(),
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+    fun updatePassword(email: String, old_pass: String, new_pass: String)
+    {
+        RetrofitClient.instance.actualizaPass(email, old_pass, new_pass).enqueue(object : Callback<ResponseBody>
+        {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
+            {
+                if (response.code() == 200)
+                {
+                    Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
                 }
-
-                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-
-                    Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                else
+                {
+                    Toast.makeText(
+                        applicationContext,
+                        response.errorBody()!!.string(),
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
-            })
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable)
+            {
+                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }

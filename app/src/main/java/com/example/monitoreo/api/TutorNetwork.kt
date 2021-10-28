@@ -1,6 +1,5 @@
 package com.example.monitoreo.api
-
-import com.example.monitoreo.Tutor
+import com.example.monitoreo.models.Tutor
 import com.google.gson.annotations.SerializedName
 
 data class TutorNetwork(

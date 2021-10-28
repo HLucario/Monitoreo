@@ -1,4 +1,4 @@
-package com.example.monitoreo
+package com.example.monitoreo.models
 
 import com.google.gson.annotations.SerializedName
 

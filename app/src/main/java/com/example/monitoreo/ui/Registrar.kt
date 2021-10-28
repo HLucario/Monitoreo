@@ -1,25 +1,28 @@
-package com.example.monitoreo
+package com.example.monitoreo.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.monitoreo.R
+import com.example.monitoreo.api.RetrofitClient
 import com.example.monitoreo.api.TutorNetwork
 import com.example.monitoreo.api.asNetwork
-import com.google.gson.Gson
+import com.example.monitoreo.models.Tutor
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class Registrar : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+class Registrar : AppCompatActivity()
+{
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrar)
         val btnRegistrar = findViewById<Button>(R.id.btnRegistrar)
-        btnRegistrar.setOnClickListener {
+        btnRegistrar.setOnClickListener{
             val editNombre = findViewById<EditText>(R.id.editNombre)
             val nombre = editNombre.text.toString()
             val editApPat = findViewById<EditText>(R.id.editApPat)
@@ -32,65 +35,70 @@ class Registrar : AppCompatActivity() {
             val password = editContra.text.toString()
             val editEdad = findViewById<EditText>(R.id.editEdad)
             val edad_t = editEdad.text.toString()
-            if (nombre.isEmpty()) {
+            if (nombre.isEmpty())
+            {
                 editNombre.error = "El nombre es requerido"
                 editNombre.requestFocus()
                 return@setOnClickListener
             }
-            if (ap_paterno.isEmpty()) {
+            if (ap_paterno.isEmpty())
+            {
                 editApPat.error = "El apellido paterno es requerido"
                 editApPat.requestFocus()
                 return@setOnClickListener
             }
-            if (ap_materno.isEmpty()) {
+            if (ap_materno.isEmpty())
+            {
                 editApMat.error = "El apellido materno es requerido"
                 editApMat.requestFocus()
                 return@setOnClickListener
             }
-            if (correo.isEmpty()) {
+            if (correo.isEmpty())
+            {
                 editCorreo.error = "El correo es requerido"
                 editCorreo.requestFocus()
                 return@setOnClickListener
             }
-            if (password.isEmpty()) {
+            if (password.isEmpty())
+            {
                 editContra.error = "La contraseña es requerida"
                 editContra.requestFocus()
                 return@setOnClickListener
             }
-            if (edad_t.isEmpty()) {
+            if (edad_t.isEmpty())
+            {
                 editEdad.error = "La edad es requerida"
                 editEdad.requestFocus()
                 return@setOnClickListener
             }
             val edad = edad_t.toInt()
-            val tutor: TutorNetwork =
-                Tutor(correo, nombre, ap_paterno, ap_materno, edad, password).asNetwork()
-            RetrofitClient.instance.registrarTutor(tutor)
-                .enqueue(object : Callback<ResponseBody> {
-                    override fun onResponse(
-                        call: Call<ResponseBody>,
-                        response: Response<ResponseBody>
-                    ) {
-                        if (response.code() == 200) {
-                            Toast.makeText(
-                                applicationContext,
-                                response.message(),
-                                Toast.LENGTH_LONG
-                            ).show()
-                        } else {
-                            Toast.makeText(
-                                applicationContext,
-                                response.errorBody()!!.string(),
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
+            val tutor: TutorNetwork = Tutor(correo, nombre, ap_paterno, ap_materno, edad, password).asNetwork()
+            RetrofitClient.instance.registrarTutor(tutor).enqueue(object : Callback<ResponseBody>
+            {
+                override fun onResponse(call: Call<ResponseBody>,response: Response<ResponseBody>)
+                {
+                    if (response.code() == 200)
+                    {
+                        Toast.makeText(
+                            applicationContext,
+                            response.message(),
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
-
-                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                    else
+                    {
+                        Toast.makeText(
+                            applicationContext,
+                            response.errorBody()!!.string(),
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
-                })
+                }
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable)
+                {
+                    Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                }
+            })
         }
     }
-
 }

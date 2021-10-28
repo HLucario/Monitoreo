@@ -1,7 +1,5 @@
 package com.example.monitoreo.api
-
-import com.example.monitoreo.Hijo
-
+import com.example.monitoreo.models.Hijo
 import com.google.gson.annotations.SerializedName
 
 data class HijoNetwork(

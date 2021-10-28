@@ -1,21 +1,20 @@
-package com.example.monitoreo
+package com.example.monitoreo.ui
 
 import android.content.ContentValues
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.RecyclerView
+import com.example.monitoreo.R
+import com.example.monitoreo.api.RetrofitClient
+import com.example.monitoreo.models.AlertaResponse
 import java.io.File
-import com.googlecode.tesseract.android.TessBaseAPI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -23,11 +22,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ImagenAlerta : AppCompatActivity() {
+class ImagenAlerta : AppCompatActivity()
+{
     private lateinit var alertasR: List<AlertaResponse>
-
     private var bitmap: Bitmap? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
+
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         alertasR = emptyList()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_imagen_alerta)
@@ -43,7 +44,8 @@ class ImagenAlerta : AppCompatActivity() {
         }
     }
 
-    private fun saveToSharedStorage(): File {
+    private fun saveToSharedStorage(): File
+    {
         val dateInMilis = System.currentTimeMillis()
         val filename = "Captura-${dateInMilis}.jpg"
         val collection = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
@@ -68,36 +70,40 @@ class ImagenAlerta : AppCompatActivity() {
         return file
     }
 
-    suspend fun obtenerAlertas(tutor_email: String, id: Int, image_alerta: ImageView) =
-        withContext(Dispatchers.Main) {
-            var a = 0
-            val ida = intent.getIntExtra("id_alerta", 0)
-            RetrofitClient.instance.tablaAlertasLast(tutor_email, id)
-                .enqueue(object : Callback<List<AlertaResponse>> {
-                    override fun onResponse(
-                        call: Call<List<AlertaResponse>>,
-                        response: Response<List<AlertaResponse>>
-                    ) {
-                        if (response.code() == 200) {
-                            alertasR = response.body()!!
-                            for (i in 0..alertasR.size - 1) {
-                                if (alertasR[i].id_alerta == ida) {
-                                    a = i
-                                }
-                            }
-                            val imageString = alertasR[a].img
-                            val decodeByte = Base64.decode(imageString, Base64.DEFAULT)
-                            bitmap = BitmapFactory.decodeByteArray(decodeByte, 0, decodeByte.size)
-                            image_alerta.setImageBitmap(bitmap)
-                        } else {
-                            alertasR = emptyList()
+    suspend fun obtenerAlertas(tutor_email: String, id: Int, image_alerta: ImageView) = withContext(Dispatchers.Main)
+    {
+        var a = 0
+        val ida = intent.getIntExtra("id_alerta", 0)
+        RetrofitClient.instance.tablaAlertasLast(tutor_email, id).enqueue(object : Callback<List<AlertaResponse>>
+        {
+            override fun onResponse(call: Call<List<AlertaResponse>>, response: Response<List<AlertaResponse>>)
+            {
+                if (response.code() == 200)
+                {
+                    alertasR = response.body()!!
+                    for (i in 0..alertasR.size - 1)
+                    {
+                        if (alertasR[i].id_alerta == ida)
+                        {
+                            a = i
                         }
                     }
+                    val imageString = alertasR[a].img
+                    val decodeByte = Base64.decode(imageString, Base64.DEFAULT)
+                    bitmap = BitmapFactory.decodeByteArray(decodeByte, 0, decodeByte.size)
+                    image_alerta.setImageBitmap(bitmap)
+                }
+                else
+                {
+                    alertasR = emptyList()
+                }
+            }
 
-                    override fun onFailure(call: Call<List<AlertaResponse>>, t: Throwable) {
-                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
-                        alertasR = emptyList()
-                    }
-                })
-        }
+            override fun onFailure(call: Call<List<AlertaResponse>>, t: Throwable)
+            {
+                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                alertasR = emptyList()
+            }
+        })
+    }
 }

@@ -2,22 +2,22 @@ package com.example.monitoreo.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.view.Menu
 import androidx.fragment.app.Fragment
 import android.widget.Toast
-import androidx.fragment.app.ListFragment
-import androidx.recyclerview.widget.RecyclerView
 import com.example.monitoreo.databinding.FragmentGestionarHijosBinding
 import androidx.lifecycle.lifecycleScope
-import com.example.monitoreo.*
+import com.example.monitoreo.adapters.HijoResponseAdapter
+import com.example.monitoreo.api.RetrofitClient
+import com.example.monitoreo.models.HijoResponse
+import com.example.monitoreo.ui.AgregarHijo
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GestionarHijos : Fragment() {
+class GestionarHijos : Fragment()
+{
     private var _binding: FragmentGestionarHijosBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: HijoResponseAdapter
@@ -32,7 +32,8 @@ class GestionarHijos : Fragment() {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
         hijosR = emptyList()
         var email = ""
         arguments?.takeIf { it.containsKey("email") }?.apply {

@@ -6,29 +6,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
 import com.example.monitoreo.*
 import com.example.monitoreo.databinding.FragmentConfiguracionBinding
-import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.monitoreo.ui.ModificarDatos
 
-
-class Configuracion : Fragment() {
+class Configuracion : Fragment()
+{
     private var _binding: FragmentConfiguracionBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View?
+    {
         _binding = FragmentConfiguracionBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
         super.onViewCreated(view, savedInstanceState)
         var email = ""
         arguments?.takeIf { it.containsKey("email") }?.apply {
@@ -86,7 +84,8 @@ class Configuracion : Fragment() {
         startActivity(intent)
     }
 
-    override fun onDestroyView() {
+    override fun onDestroyView()
+    {
         super.onDestroyView()
         _binding = null
     }
